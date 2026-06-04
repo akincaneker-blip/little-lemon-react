@@ -398,11 +398,22 @@ img {
   inline-size: 100%;
   min-inline-size: 0;
   max-inline-size: 100%;
+  line-height: 1.2;
 }
 
 .form-field input[type='date']::-webkit-date-and-time-value {
+  display: flex;
+  align-items: center;
   min-width: 0;
+  height: 100%;
+  margin: 0;
   text-align: left;
+}
+
+.form-field input[type='date']::-webkit-datetime-edit {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .form-field input[aria-invalid='true'],
