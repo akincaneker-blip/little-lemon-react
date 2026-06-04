@@ -66,7 +66,8 @@ The project currently includes 13 automated tests covering:
 
 ## Live Demo
 
-The deployed version will be added here after deployment.
+[View the live project](https://little-lemon-react-drab.vercel.app)
+
 
 ## Project Status
 
