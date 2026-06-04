@@ -1,6 +1,6 @@
 import FeatureCard from './FeatureCard';
 
-import menuImage from '../assets/images/menu.webp';
+import menuImage from '../assets/menu/menu-banner.webp';
 import reservationImage from '../assets/images/reservation.webp';
 import aboutImage from '../assets/images/about.webp';
 
