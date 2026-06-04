@@ -351,8 +351,14 @@ a:focus-visible {
 
 .form-field {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 0.35rem;
+}
+
+.form-field input[type='date'] {
+  max-width: 100%;
+  min-width: 0;
 }
 
 .form-field label {
@@ -363,12 +369,15 @@ a:focus-visible {
 .form-field input,
 .form-field select {
   width: 100%;
+  min-width: 0;
+  min-height: 52px;
   padding: 0.75rem;
   border: 1px solid #bbbbbb;
   border-radius: 10px;
   background-color: #ffffff;
   color: #1f1f1f;
   font: inherit;
+  box-sizing: border-box;
 }
 
 .form-field input:focus,
@@ -446,8 +455,6 @@ a:focus-visible {
 }
 
 @media (max-width: 800px) {
-
-@media (max-width: 800px) {
   .app-container {
     padding: 2rem 4%;
   }
@@ -487,5 +494,4 @@ a:focus-visible {
   .footer-copy {
     text-align: center;
   }
-}
 }
