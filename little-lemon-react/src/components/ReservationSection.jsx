@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import reservationTimes from '../data/reservationTimes';
 
 const initialFormData = {
   date: '',
@@ -132,14 +133,15 @@ function ReservationSection() {
               value={formData.time}
               onChange={handleChange}
               aria-describedby={errors.time ? 'time-error' : undefined}
-              aria-invalid={Boolean(errors.time)}
-            >
+              aria-invalid={Boolean(errors.time)}>
+              
               <option value="">Select a time</option>
-              <option value="17:00">17:00</option>
-              <option value="18:00">18:00</option>
-              <option value="19:00">19:00</option>
-              <option value="20:00">20:00</option>
-              <option value="21:00">21:00</option>
+
+              {reservationTimes.map((time) => (
+              <option key={time} value={time}>
+              {time}
+              </option>
+              ))}
             </select>
             {errors.time && (
               <span className="form-error" id="time-error">
