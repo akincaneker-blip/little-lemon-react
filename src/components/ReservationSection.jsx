@@ -85,8 +85,7 @@ function ReservationSection() {
 
     setErrors({});
     setConfirmation(
-      `Thank you, ${formData.name}. Your table for ${formData.guests} guest${
-        formData.guests === '1' ? '' : 's'
+      `Thank you, ${formData.name}. Your table for ${formData.guests} guest${formData.guests === '1' ? '' : 's'
       } has been reserved for ${formData.date} at ${formData.time}.`,
     );
 
@@ -110,53 +109,52 @@ function ReservationSection() {
 
       <form className="reservation-form" onSubmit={handleSubmit} noValidate>
         <div className="form-grid">
-            <FormField
-              label="Date"
-              htmlFor="reservation-date"
-              error={errors.date}
-              errorId="date-error"
-            >
-              <input
-                id="reservation-date"
-                name="date"
-                type="date"
-                min={today}
-                value={formData.date}
-                onChange={handleChange}
-                aria-describedby={errors.date ? 'date-error' : undefined}
-                aria-invalid={Boolean(errors.date)}
-              />
-            </FormField>
+          <FormField
+            label="Date"
+            htmlFor="reservation-date"
+            error={errors.date}
+            errorId="date-error"
+          >
+            <input
+              id="reservation-date"
+              name="date"
+              type="date"
+              min={today}
+              value={formData.date}
+              onChange={handleChange}
+              aria-describedby={errors.date ? 'date-error' : undefined}
+              aria-invalid={Boolean(errors.date)}
+            />
+          </FormField>
 
-            <FormField
-              label="Time"
-              htmlFor="reservation-time"
-              error={errors.time}
-              errorId="time-error"
+          <FormField
+            label="Time"
+            htmlFor="reservation-time"
+            error={errors.time}
+            errorId="time-error"
+          >
+            <select
+              id="reservation-time"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              disabled={!formData.date}
+              aria-describedby={errors.time ? 'time-error' : undefined}
+              aria-invalid={Boolean(errors.time)}
             >
-              <select
-                id="reservation-time"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                disabled={!formData.date}
-                aria-describedby={errors.time ? 'time-error' : undefined}
-                aria-invalid={Boolean(errors.time)}
-              >
-                <option value="">
-                  {formData.date ? 'Select an available time' : 'Select a date first'}
+              <option value="">
+                {formData.date ? 'Select an available time' : 'Select a date first'}
+              </option>
+
+              {availableTimes.map((time) => (
+                <option key={time} value={time}>
+                  {time}
                 </option>
+              ))}
+            </select>
+          </FormField>
 
-                {availableTimes.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </select>
-            </FormField>
-
-          <div className="form-field">
-            <label htmlFor="reservation-guests">Number of guests</label>
+          <FormField label="Number of guests" htmlFor="reservation-guests">
             <select
               id="reservation-guests"
               name="guests"
@@ -170,7 +168,7 @@ function ReservationSection() {
               <option value="5">5 guests</option>
               <option value="6">6 guests</option>
             </select>
-          </div>
+          </FormField>
 
           <FormField label="Occasion" htmlFor="reservation-occasion">
             <select
