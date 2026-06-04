@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import reservationTimes from '../data/reservationTimes';
+import getAvailableTimes from '../utils/getAvailableTimes';
 
 const initialFormData = {
   date: '',
@@ -25,6 +25,7 @@ function ReservationSection() {
   const [confirmation, setConfirmation] = useState('');
 
   const today = getTodayAsLocalDate();
+  const availableTimes = getAvailableTimes(formData.date);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -32,11 +33,13 @@ function ReservationSection() {
     setFormData((currentData) => ({
       ...currentData,
       [name]: value,
+      ...(name === 'date' ? { time: '' } : {}),
     }));
 
     setErrors((currentErrors) => ({
       ...currentErrors,
       [name]: '',
+      ...(name === 'date' ? { time: '' } : {}),
     }));
 
     setConfirmation('');
@@ -132,12 +135,15 @@ function ReservationSection() {
               name="time"
               value={formData.time}
               onChange={handleChange}
+              disabled={!formData.date}
               aria-describedby={errors.time ? 'time-error' : undefined}
               aria-invalid={Boolean(errors.time)}>
               
-              <option value="">Select a time</option>
+              <option value="">
+              {formData.date ? 'Select an available time' : 'Select a date first'}
+              </option>
 
-              {reservationTimes.map((time) => (
+              {availableTimes.map((time) => (
               <option key={time} value={time}>
               {time}
               </option>
