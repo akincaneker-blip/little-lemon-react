@@ -8,7 +8,7 @@ function Footer() {
       </div>
 
       <div className="footer-copy">
-        <p>&copy; 2026 Little Lemon. All rights reserved SALIH.</p>
+        <p>&copy; 2026 Little Lemon. All rights reserved.</p>
       </div>
     </footer>
   );
